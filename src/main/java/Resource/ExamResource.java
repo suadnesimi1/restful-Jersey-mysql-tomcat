@@ -11,12 +11,12 @@ import java.util.List;
 public class ExamResource {
 
 @Path("/exam")
-    public class examResource{
+    public class examResource {
     ExamRepo repo = new ExamRepo();
 
     @GET
     @Consumes({MediaType.APPLICATION_JSON})
-    public List<Exam> getExam(){
+    public List<Exam> getExam() {
         return repo.getExam();
     }
 }

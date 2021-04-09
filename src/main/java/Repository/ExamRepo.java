@@ -33,4 +33,7 @@ public class ExamRepo {
         }
         return examsList;
     }
+    public Exam createExam(){
+
+    }
 }
