@@ -2,16 +2,14 @@ package Resource;
 
 import Domain.Exam;
 import Repository.ExamRepo;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-public class ExamResource {
 
-@Path("/exam")
-    public class examResource {
+@Path("exam")
+public class ExamResource {
     ExamRepo repo = new ExamRepo();
 
     @GET
@@ -19,5 +17,23 @@ public class ExamResource {
     public List<Exam> getExam() {
         return repo.getExam();
     }
+    @POST
+    @Path("set")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Exam createExam(Exam exam){
+        return repo.createExam(exam);
+    }
+    @PUT
+    @Path("update")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Exam updateExam(Exam exam){
+        return repo.updateExam(exam);
+    }
+    @DELETE
+    @Path("delete")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Exam deleteExam(Exam exam){
+        return repo.deleteExam(exam);
+    }
 }
-}
+
