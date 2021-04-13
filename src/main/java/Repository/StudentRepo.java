@@ -3,6 +3,7 @@ package Repository;
 import Connection.DbConnection;
 import Domain.Course;
 import Domain.Exam;
+import Domain.Exam_Grade;
 import Domain.Student;
 
 import java.sql.Connection;
@@ -18,18 +19,18 @@ public class StudentRepo {
     private PreparedStatement ps;
     private ResultSet rs;
 
-    public Student createStudent(Student student){
+    public Student createStudent(Student student) {
         String sql = "insert into students(id,name,faculty_id)value(?,?,?)";
-        try{
+        try {
             ps = DbConnection.getConnection().prepareStatement(sql);
-            ps.setString(1,student.getId());
-            ps.setString(2,student.getName());
-            ps.setString(3,student.getFaculty_id());
+            ps.setString(1, student.getId());
+            ps.setString(2, student.getName());
+            ps.setString(3, student.getFaculty_id());
             ps.executeUpdate();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e);
-        }finally {
+        } finally {
             System.out.println("Its running");
             DbConnection.closeAll(ps);
         }
@@ -159,7 +160,7 @@ public class StudentRepo {
 
     // kjo eshte version i pare me arraylist dhe me for loop
 
-    public List<Student> getStudentsFull(){
+    public List<Student> getStudentsFull() {
         List<Student> students = new ArrayList<>();
         String sql = "select s.id, s.name,c.id, c.name, fg.grade from students s\n" +
                 "    left join studentrelation sc on s.id = sc.student_id\n" +
@@ -175,12 +176,12 @@ public class StudentRepo {
                 Student student = null;
                 String studentId = rs.getString("s.id");
                 for (Student s : students) {
-                    if(s.getId().equals(studentId)){
+                    if (s.getId().equals(studentId)) {
                         student = s;
                         break;
                     }
                 }
-                if(student == null){
+                if (student == null) {
                     student = new Student();
                     student.setId(studentId);
                     student.setName(rs.getString("s.name"));
@@ -210,9 +211,10 @@ public class StudentRepo {
 
         return students;
     }
-  // ky eshte versioni i dyte me hashmap - te cilen e perdorim
-    public List<Student> getStudentsFullV2(){
-        HashMap<String,Student> studentsMap = new HashMap<>();
+
+    // ky eshte versioni i dyte me hashmap - te cilen e perdorim
+    public List<Student> getStudentsFullV2() {
+        HashMap<String, Student> studentsMap = new HashMap<>();
         String sql = "select s.id, s.name,s.faculty_id, c.id, c.name, fg.grade from students s\n" +
                 "    left join studentrelation sc on s.id = sc.student_id\n" +
                 "    left join courses c on sc.course_id = c.id\n" +
@@ -226,7 +228,7 @@ public class StudentRepo {
             while (rs.next()) {
                 String studentId = rs.getString("s.id");
                 Student student = studentsMap.get(studentId);
-                if(student == null){
+                if (student == null) {
                     student = new Student();
                     student.setId(studentId);
                     student.setName(rs.getString("s.name"));
@@ -259,7 +261,7 @@ public class StudentRepo {
     }
 
     // ky eshte versioni trete me arraylist po me stream ne vend te for loop
-    public List<Student> getStudentsFullV3(){
+    public List<Student> getStudentsFullV3() {
         List<Student> students = new ArrayList<>();
         String sql = "select s.id, s.name, c.id, c.name, fg.grade from students s\n" +
                 "    left join studentrelation sc on s.id = sc.student_id\n" +
@@ -275,7 +277,7 @@ public class StudentRepo {
                 String studentId = rs.getString("s.id");
                 Student student = students.stream().filter(s -> s.getId()
                         .equals(studentId)).findFirst().orElse(null);
-                if(student == null){
+                if (student == null) {
                     student = new Student();
                     student.setId(studentId);
                     student.setName(rs.getString("s.name"));
@@ -302,7 +304,56 @@ public class StudentRepo {
             DbConnection.closeAll(ps);
             DbConnection.closeConnection(connection);
         }
-
         return students;
+    }
+
+    /*
+     * get students examsid and exams grade
+     */
+    public List<Student> getStudentExam() {
+        HashMap<String, Student> studentHashMap = new HashMap<>();
+        String query = "select s.id,s.name,s.faculty_id,eg.exam_id,eg.grade from students s\n" +
+                "left join exam_grade eg on s.id = eg.student_id\n" +
+                "left join exams e on eg.exam_id = e.id;";
+        Connection connection = null;
+        try {
+            connection = DbConnection.getConnection();
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String studentId = rs.getString("s.id");
+                Student student = studentHashMap.get(studentId);
+                if (student == null) {
+                    student = new Student();
+                    student.setId(studentId);
+                    student.setName(rs.getString("s.name"));
+                    student.setFaculty_id(rs.getString("s.faculty_id"));
+                    student.setExamGrades(new ArrayList<>());
+                    studentHashMap.put(studentId, student);
+                }
+                String examGradeId = rs.getString("s.id");
+                if (examGradeId!=null){
+                    Exam_Grade examGrade = new Exam_Grade();
+                    examGrade.setExam_id(examGradeId);
+                    examGrade.setStudent_id(rs.getString("s.id"));
+                    examGrade.setGrade(rs.getString("eg.grade"));
+                    student.getExamGrades().add(examGrade);
+                }
+
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            DbConnection.closeAll(ps);
+            DbConnection.closeConnection(connection);
+            return new ArrayList<>(studentHashMap.values());
+        }
+
     }
 }

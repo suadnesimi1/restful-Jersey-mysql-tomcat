@@ -11,6 +11,7 @@ public class Student {
     private String faculty_id;
     private List<Course> courses = new ArrayList<>();
     private List<Exam> exams = new ArrayList<>();
+    private List<Exam_Grade>examGrades=new ArrayList<>();
 
 
     public Student(){
@@ -62,7 +63,10 @@ public class Student {
 
     public void setExamGrades(List<Exam>exams){
         this.exams = exams;
-
     }
+    public List<Exam_Grade> getExamGrades() {
+        return examGrades;
+    }
+
 
 }

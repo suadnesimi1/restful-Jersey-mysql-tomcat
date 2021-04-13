@@ -69,4 +69,10 @@ public class StudentResource {
         System.out.println(student);
         return repo.createStudent(student);
     }
+    @GET
+    @Path("/examgrade")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public List<Student>getStudentsExam(){
+        return repo.getStudentExam();
+    }
 }

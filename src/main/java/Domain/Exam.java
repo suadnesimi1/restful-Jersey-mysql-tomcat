@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Exam  {
+public class Exam extends Exam_Grade {
     private String id;
     private String grade;
     private List<Exam_Grade>examGrades=new ArrayList<>();
