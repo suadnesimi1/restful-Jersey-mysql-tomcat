@@ -3,7 +3,7 @@ package Repository;
 import Connection.DbConnection;
 import Domain.Course;
 import Domain.Exam;
-import Domain.Exam_Grade;
+import Domain.ExamGrade;
 import Domain.Student;
 
 import java.sql.Connection;
@@ -333,7 +333,7 @@ public class StudentRepo {
                 }
                 String examGradeId = rs.getString("s.id");
                 if (examGradeId!=null){
-                    Exam_Grade examGrade = new Exam_Grade();
+                    ExamGrade examGrade = new ExamGrade();
                     examGrade.setExam_id(examGradeId);
                     examGrade.setStudent_id(rs.getString("s.id"));
                     examGrade.setGrade(rs.getString("eg.grade"));

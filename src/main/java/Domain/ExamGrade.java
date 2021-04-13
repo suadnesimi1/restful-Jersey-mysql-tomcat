@@ -1,6 +1,6 @@
 package Domain;
 
-public class Exam_Grade {
+public class ExamGrade {
     String student_id;
     String exam_id;
     String grade;

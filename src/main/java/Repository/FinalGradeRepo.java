@@ -1,7 +1,7 @@
 package Repository;
 
 import Connection.DbConnection;
-import Domain.Final_Grade;
+import Domain.FinalGrade;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +12,7 @@ public class FinalGradeRepo {
     private PreparedStatement ps;
     private ResultSet rs;
 
-    public Final_Grade createFinalGrade(Final_Grade finalGrade){
+    public FinalGrade createFinalGrade(FinalGrade finalGrade){
         String query = "insert into final_grade(grade,course_id,student_id) values" +
                 "(?,?,?)";
         try{
@@ -28,15 +28,15 @@ public class FinalGradeRepo {
         }
         return finalGrade;
     }
-    public List<Final_Grade> getFinalGrade() {
-        List<Final_Grade> Final_GradeList = new ArrayList<>();
+    public List<FinalGrade> getFinalGrade() {
+        List<FinalGrade> Final_GradeList = new ArrayList<>();
         String sql = "select * from final_grade";
 
         try {
             ps = DbConnection.getConnection().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Final_Grade final_grade = new Final_Grade();
+                FinalGrade final_grade = new FinalGrade();
                 final_grade.setGrade(rs.getString(1));
                 final_grade.setCourse_id(rs.getString(2));
                 final_grade.setStudent_id(rs.getString(3));
@@ -51,7 +51,7 @@ public class FinalGradeRepo {
         }
         return Final_GradeList;
     }
-    public Final_Grade updateFinalGrade(Final_Grade finalGrade){
+    public FinalGrade updateFinalGrade(FinalGrade finalGrade){
         String query = "update final_grade\n" +
                 "set grade = ?\n" +
                 "where student_id = ? and course_id = ?";
@@ -68,7 +68,7 @@ public class FinalGradeRepo {
         }
         return finalGrade;
     }
-    public Final_Grade deleteFinalGrade(Final_Grade finalGrade){
+    public FinalGrade deleteFinalGrade(FinalGrade finalGrade){
         String query = "delete from final_grade where student_id = ? and course_id = ?";
         try{
             ps = DbConnection.getConnection().prepareStatement(query);

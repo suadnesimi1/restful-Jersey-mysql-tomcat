@@ -2,7 +2,6 @@ package Repository;
 
 import Connection.DbConnection;
 import Domain.Exam;
-import Domain.Exam_Grade;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

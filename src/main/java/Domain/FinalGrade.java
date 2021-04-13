@@ -1,6 +1,6 @@
 package Domain;
 
-public class Final_Grade {
+public class FinalGrade {
     String grade;
     String course_id;
     String student_id;

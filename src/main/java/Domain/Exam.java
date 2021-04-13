@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Exam extends Exam_Grade {
+public class Exam extends ExamGrade {
     private String id;
     private String grade;
-    private List<Exam_Grade>examGrades=new ArrayList<>();
+    private List<ExamGrade>examGrades=new ArrayList<>();
 
     public Exam(){
 
@@ -32,10 +32,10 @@ public class Exam extends Exam_Grade {
     public void setId(String id) {
         this.id = id;
     }
-    public List<Exam_Grade> getExamGrades() {
+    public List<ExamGrade> getExamGrades() {
         return examGrades;
     }
-    public void setExamGrades(List<Exam_Grade> examGrades) {
+    public void setExamGrades(List<ExamGrade> examGrades) {
         this.examGrades = examGrades;
     }
 }

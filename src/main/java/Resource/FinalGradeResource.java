@@ -1,6 +1,6 @@
 package Resource;
 
-import Domain.Final_Grade;
+import Domain.FinalGrade;
 import Repository.FinalGradeRepo;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -13,25 +13,25 @@ public class FinalGradeResource {
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Final_Grade> getFinalGrade() {
+    public List<FinalGrade> getFinalGrade() {
         return repo.getFinalGrade();
     }
     @POST
     @Path("set")
     @Consumes({MediaType.APPLICATION_JSON})
-    public Final_Grade createFinalGrade(Final_Grade finalGrade){
+    public FinalGrade createFinalGrade(FinalGrade finalGrade){
         return repo.createFinalGrade(finalGrade);
     }
     @PUT
     @Path("update")
     @Consumes({MediaType.APPLICATION_JSON})
-    public Final_Grade updateFinalGrade(Final_Grade finalGrade){
+    public FinalGrade updateFinalGrade(FinalGrade finalGrade){
         return repo.updateFinalGrade(finalGrade);
     }
     @DELETE
     @Path("delete")
     @Consumes({MediaType.APPLICATION_JSON})
-    public Final_Grade deleteFinalGrade(Final_Grade finalGrade){
+    public FinalGrade deleteFinalGrade(FinalGrade finalGrade){
         return repo.deleteFinalGrade(finalGrade);
     }
 
