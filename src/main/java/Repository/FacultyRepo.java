@@ -6,6 +6,7 @@ import Domain.Faculty;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class FacultyRepo {
@@ -119,6 +120,53 @@ public class FacultyRepo {
         }
         return faculty;
     }
+    /*
+    get faculties,courses
+     */
+    public List<Faculty>getAllFaculties(){
+        HashMap<String,Faculty>facultyHashMap = new HashMap<>();
+        String query = "select f.id,f.name, c.name from faculties f\n" +
+                "inner join faculty_courses fc on f.id = fc.faculty_id\n" +
+                "inner join courses c on fc.course_id = c.id";
+        Connection connection = null;
+        try{
+            connection = DbConnection.getConnection();
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                String facultyId = rs.getString("f.id");
+                Faculty faculty = facultyHashMap.get(facultyId);
+                if (faculty == null){
+                    faculty = new Faculty();
+                    faculty.setId(facultyId);
+                    faculty.setName(rs.getString("f.name"));
+                    faculty.setCourses(new ArrayList<>());
+                    facultyHashMap.put(facultyId,faculty);
+                }
+                String courseId = rs.getString("c.id");
+                if (courseId!=null){
+                    Course course = new Course();
+                    course.setId(courseId);
+                    course.setName(rs.getString("c.name"));
+                    faculty.getCourses().add(course);
+
+                }
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            try {
+                rs.close();
+        }catch (SQLException throwables){
+                throwables.printStackTrace();
+            }
+            DbConnection.closeAll(ps);
+            DbConnection.closeConnection(connection);
+        }
+        return new ArrayList<>(facultyHashMap.values());
+    }
+
 
 
 

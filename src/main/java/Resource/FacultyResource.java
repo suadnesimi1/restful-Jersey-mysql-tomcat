@@ -48,4 +48,11 @@ public class FacultyResource {
         return repo.deleteFaculty(faculty);
     }
 
+    @GET
+    @Path("/getall")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Faculty getAllFaculties(Faculty faculty){
+        return (Faculty) repo.getAllFaculties();
+    }
+
 }
