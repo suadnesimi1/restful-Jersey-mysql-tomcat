@@ -20,7 +20,7 @@ public class FacultyRepo {
             ps=DbConnection.getConnection().prepareStatement(sql);
             ps.setString(1, faculty.getId());
             ps.setString(2, faculty.getName());
-            ps.setString(3, faculty.getUniversity_id());
+            ps.setString(3, faculty.getUniversityId());
             ps.executeUpdate();
 
         } catch (Exception e) {

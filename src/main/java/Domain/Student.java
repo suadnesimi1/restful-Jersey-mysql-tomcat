@@ -20,7 +20,7 @@ public class Student {
     public Student(ResultSet rs ) throws SQLException{
         setId(rs.getString(1));
         setName(rs.getString(2));
-        setFaculty_id(rs.getString(3));
+        setFacultyId(rs.getString(3));
         courses = new ArrayList<>();
         exams = new ArrayList<>();
     }
@@ -41,12 +41,12 @@ public class Student {
         this.name = name;
     }
 
-    public String getFaculty_id() {
+    public String getFacultyId() {
         return facultyId;
     }
 
-    public void setFaculty_id(String faculty_id) {
-        this.facultyId=faculty_id;
+    public void setFacultyId(String facultyId) {
+        this.facultyId=facultyId;
     }
 
     public List<Course> getCourses() {

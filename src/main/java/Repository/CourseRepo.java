@@ -69,7 +69,7 @@ public class CourseRepo {
                     Student student = new Student();
                     student.setId(studentId);
                     student.setName(rs.getString("st.name"));
-                    student.setFaculty_id(rs.getString("st.faculty_id"));
+                    student.setFacultyId(rs.getString("st.faculty_id"));
                     course.getStudents().add(student);
 
                 }

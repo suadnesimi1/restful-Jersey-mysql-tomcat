@@ -43,7 +43,7 @@ public class Course {
     public String getFinal_grade(){
         return finalGrade;
     }
-    public void setFinal_grade(String finalGrade){
+    public void setFinalGrade(String finalGrade){
         this.finalGrade=finalGrade;
     }
 

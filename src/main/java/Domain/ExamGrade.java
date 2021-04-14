@@ -13,11 +13,11 @@ public class ExamGrade {
         this.studentId=student_id;
     }
 
-    public String getExam_id() {
+    public String getExamId() {
         return examId;
     }
 
-    public void setExam_id(String exam_id) {
+    public void setExamId(String exam_id) {
         this.examId=exam_id;
     }
 

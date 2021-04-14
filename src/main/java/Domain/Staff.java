@@ -17,8 +17,8 @@ public class Staff {
     public Staff(ResultSet rs) throws SQLException {
         setId(rs.getString("s.id"));
         setName(rs.getString("s.name"));
-        setFacilty_id("s.faculty_id");
-        setUniversity_id(rs.getString("s.university_id"));
+        setFaciltyId("s.faculty_id");
+        setUniversityId(rs.getString("s.university_id"));
        courses = new ArrayList<>();
     }
 
@@ -38,20 +38,20 @@ public class Staff {
         this.name = name;
     }
 
-    public String getUniversity_id() {
+    public String getUniversityId() {
         return universityId;
     }
 
-    public void setUniversity_id(String university_id) {
-        this.universityId=university_id;
+    public void setUniversityId(String universityId) {
+        this.universityId=universityId;
     }
 
-    public String getFacilty_id() {
+    public String getFaciltyId() {
         return facultyId;
     }
 
-    public void setFacilty_id(String facilty_id) {
-        this.facultyId=facilty_id;
+    public void setFaciltyId(String faciltyId) {
+        this.facultyId=faciltyId;
     }
     public List<Course> getCourses() {
         return courses;

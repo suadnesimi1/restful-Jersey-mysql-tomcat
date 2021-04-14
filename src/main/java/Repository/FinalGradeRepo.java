@@ -18,8 +18,8 @@ public class FinalGradeRepo {
         try{
             ps = DbConnection.getConnection().prepareStatement(query);
             ps.setString(1,finalGrade.getGrade());
-            ps.setString(2,finalGrade.getCourse_id());
-            ps.setString(3,finalGrade.getStudent_id());
+            ps.setString(2,finalGrade.getCourseId());
+            ps.setString(3,finalGrade.getStudentId());
             ps.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();
@@ -29,18 +29,18 @@ public class FinalGradeRepo {
         return finalGrade;
     }
     public List<FinalGrade> getFinalGrade() {
-        List<FinalGrade> Final_GradeList = new ArrayList<>();
+        List<FinalGrade> FinalGradeList = new ArrayList<>();
         String sql = "select * from final_grade";
 
         try {
             ps = DbConnection.getConnection().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                FinalGrade final_grade = new FinalGrade();
-                final_grade.setGrade(rs.getString(1));
-                final_grade.setCourse_id(rs.getString(2));
-                final_grade.setStudent_id(rs.getString(3));
-                Final_GradeList.add(final_grade);
+                FinalGrade finalGrade = new FinalGrade();
+                finalGrade.setGrade(rs.getString(1));
+                finalGrade.setCourseId(rs.getString(2));
+                finalGrade.setStudentId(rs.getString(3));
+                FinalGradeList.add(finalGrade);
 
             }
         } catch (Exception e) {
@@ -49,7 +49,7 @@ public class FinalGradeRepo {
         } finally {
             DbConnection.closeAll(ps);
         }
-        return Final_GradeList;
+       return FinalGradeList;
     }
     public FinalGrade updateFinalGrade(FinalGrade finalGrade){
         String query = "update final_grade\n" +
@@ -58,8 +58,8 @@ public class FinalGradeRepo {
         try{
             ps = DbConnection.getConnection().prepareStatement(query);
             ps.setString(1,finalGrade.getGrade());
-            ps.setString(2,finalGrade.getStudent_id());
-            ps.setString(3,finalGrade.getCourse_id());
+            ps.setString(2,finalGrade.getStudentId());
+            ps.setString(3,finalGrade.getCourseId());
             ps.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();
@@ -72,8 +72,8 @@ public class FinalGradeRepo {
         String query = "delete from final_grade where student_id = ? and course_id = ?";
         try{
             ps = DbConnection.getConnection().prepareStatement(query);
-            ps.setString(1,finalGrade.getStudent_id());
-            ps.setString(2,finalGrade.getCourse_id());
+            ps.setString(1,finalGrade.getStudentId());
+            ps.setString(2,finalGrade.getCourseId());
             ps.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();

@@ -25,7 +25,7 @@ public class StudentRepo {
             ps = DbConnection.getConnection().prepareStatement(sql);
             ps.setString(1, student.getId());
             ps.setString(2, student.getName());
-            ps.setString(3, student.getFaculty_id());
+            ps.setString(3, student.getFacultyId());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,7 +48,7 @@ public class StudentRepo {
                 Student student = new Student();
                 student.setId(rs.getString(1));
                 student.setName(rs.getString(2));
-                student.setFaculty_id(rs.getString(3));
+                student.setFacultyId(rs.getString(3));
                 studentList.add(student);
             }
         } catch (Exception e) {
@@ -144,7 +144,7 @@ public class StudentRepo {
                     Course course = new Course();
                     course.setId(courseId);
                     course.setName(rs.getString("c.name"));
-                    course.setFinal_grade(rs.getString("fg.grade"));
+                    course.setFinalGrade(rs.getString("fg.grade"));
                     student.getCourses().add(course);
                 }
             }
@@ -193,7 +193,7 @@ public class StudentRepo {
                     Course course = new Course();
                     course.setId(courseId);
                     course.setName(rs.getString("c.name"));
-                    course.setFinal_grade(rs.getString("fg.grade"));
+                    course.setFinalGrade(rs.getString("fg.grade"));
                     student.getCourses().add(course);
                 }
             }
@@ -232,7 +232,7 @@ public class StudentRepo {
                     student = new Student();
                     student.setId(studentId);
                     student.setName(rs.getString("s.name"));
-                    student.setFaculty_id(rs.getString("s.faculty_id"));
+                    student.setFacultyId(rs.getString("s.faculty_id"));
                     student.setCourses(new ArrayList<>());
                     studentsMap.put(studentId, student);
                 }
@@ -241,7 +241,7 @@ public class StudentRepo {
                     Course course = new Course();
                     course.setId(courseId);
                     course.setName(rs.getString("c.name"));
-                    course.setFinal_grade(rs.getString("fg.grade"));
+                    course.setFinalGrade(rs.getString("fg.grade"));
                     student.getCourses().add(course);
                 }
             }
@@ -289,7 +289,7 @@ public class StudentRepo {
                     Course course = new Course();
                     course.setId(courseId);
                     course.setName(rs.getString("c.name"));
-                    course.setFinal_grade(rs.getString("fg.grade"));
+                    course.setFinalGrade(rs.getString("fg.grade"));
                     student.getCourses().add(course);
                 }
             }
@@ -327,14 +327,14 @@ public class StudentRepo {
                     student = new Student();
                     student.setId(studentId);
                     student.setName(rs.getString("s.name"));
-                    student.setFaculty_id(rs.getString("s.faculty_id"));
+                    student.setFacultyId(rs.getString("s.faculty_id"));
                     student.setExamGrades(new ArrayList<>());
                     studentHashMap.put(studentId, student);
                 }
                 String examGradeId = rs.getString("s.id");
                 if (examGradeId!=null){
                     ExamGrade examGrade = new ExamGrade();
-                    examGrade.setExam_id(examGradeId);
+                    examGrade.setExamId(examGradeId);
                     examGrade.setStudent_id(rs.getString("s.id"));
                     examGrade.setGrade(rs.getString("eg.grade"));
                     student.getExamGrades().add(examGrade);

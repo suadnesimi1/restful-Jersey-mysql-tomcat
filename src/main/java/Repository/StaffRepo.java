@@ -21,8 +21,8 @@ public class StaffRepo {
             ps = DbConnection.getConnection().prepareStatement(query);
             ps.setString(1,staff.getId());
             ps.setString(2,staff.getName());
-            ps.setString(3,staff.getFacilty_id());
-            ps.setString(4,staff.getUniversity_id());
+            ps.setString(3,staff.getFaciltyId());
+            ps.setString(4,staff.getUniversityId());
             ps.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();
@@ -40,7 +40,7 @@ public class StaffRepo {
             ps = DbConnection.getConnection().prepareStatement(query);
             ps.setString(2,staff.getId());
             ps.setString(1,staff.getName());
-            ps.setString(3,staff.getFacilty_id());
+            ps.setString(3,staff.getFaciltyId());
 
             ps.executeUpdate();
         }catch (Exception e){
@@ -74,8 +74,8 @@ public class StaffRepo {
                 Staff staff = new Staff();
                 staff.setId(rs.getString(1));
                 staff.setName(rs.getString(2));
-                staff.setFacilty_id(rs.getString(3));
-                staff.setUniversity_id(rs.getString(4));
+                staff.setFaciltyId(rs.getString(3));
+                staff.setUniversityId(rs.getString(4));
                 staffList.add(staff);
             }
         } catch (Exception e) {
