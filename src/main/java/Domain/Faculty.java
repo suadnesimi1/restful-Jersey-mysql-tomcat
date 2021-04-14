@@ -8,7 +8,7 @@ import java.util.List;
 public class Faculty {
     private String id;
     private String name;
-    private String university_id;
+    private String universityId;
     private List<Course> courses = new ArrayList<>();
 
 
@@ -38,11 +38,11 @@ public class Faculty {
     }
 
     public String getUniversity_id() {
-        return university_id;
+        return universityId;
     }
 
     public void setUniversity_id(String university_id) {
-        this.university_id = university_id;
+        this.universityId = universityId;
     }
 
     public List<Course> getCourses() {

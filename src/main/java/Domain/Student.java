@@ -8,7 +8,7 @@ import java.util.List;
 public class Student {
     private String id;
     private String name;
-    private String faculty_id;
+    private String facultyId;
     private List<Course> courses = new ArrayList<>();
     private List<Exam> exams = new ArrayList<>();
     private List<ExamGrade>examGrades=new ArrayList<>();
@@ -42,11 +42,11 @@ public class Student {
     }
 
     public String getFaculty_id() {
-        return faculty_id;
+        return facultyId;
     }
 
     public void setFaculty_id(String faculty_id) {
-        this.faculty_id = faculty_id;
+        this.facultyId=faculty_id;
     }
 
     public List<Course> getCourses() {

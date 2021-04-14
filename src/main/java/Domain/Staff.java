@@ -8,8 +8,8 @@ import java.util.List;
 public class Staff {
     private String id;
     private String name;
-    private String facilty_id;
-    private String university_id;
+    private String facultyId;
+    private String universityId;
     private List<Course> courses = new ArrayList<>();
 
     public Staff() {
@@ -39,19 +39,19 @@ public class Staff {
     }
 
     public String getUniversity_id() {
-        return university_id;
+        return universityId;
     }
 
     public void setUniversity_id(String university_id) {
-        this.university_id = university_id;
+        this.universityId=university_id;
     }
 
     public String getFacilty_id() {
-        return facilty_id;
+        return facultyId;
     }
 
     public void setFacilty_id(String facilty_id) {
-        this.facilty_id = facilty_id;
+        this.facultyId=facilty_id;
     }
     public List<Course> getCourses() {
         return courses;

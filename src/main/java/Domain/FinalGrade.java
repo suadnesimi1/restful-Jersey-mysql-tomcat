@@ -2,8 +2,8 @@ package Domain;
 
 public class FinalGrade {
     String grade;
-    String course_id;
-    String student_id;
+    String courseId;
+    String studentId;
 
     public String getGrade() {
         return grade;
@@ -14,18 +14,18 @@ public class FinalGrade {
     }
 
     public String getCourse_id() {
-        return course_id;
+        return courseId;
     }
 
     public void setCourse_id(String course_id) {
-        this.course_id = course_id;
+        this.courseId = courseId;
     }
 
     public String getStudent_id() {
-        return student_id;
+        return studentId;
     }
 
     public void setStudent_id(String student_id) {
-        this.student_id = student_id;
+        this.studentId=student_id;
     }
 }

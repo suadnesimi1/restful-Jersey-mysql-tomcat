@@ -8,7 +8,7 @@ import java.util.List;
 public class Course {
     private String id;
     private String name;
-    private String final_grade;
+    private String finalGrade;
     private List<Student> students = new ArrayList<>();
     private List<Staff> staff = new ArrayList<>();
 
@@ -41,10 +41,10 @@ public class Course {
         this.name = name;
     }
     public String getFinal_grade(){
-        return final_grade;
+        return finalGrade;
     }
     public void setFinal_grade(String finalGrade){
-        this.final_grade=finalGrade;
+        this.finalGrade=finalGrade;
     }
 
 
