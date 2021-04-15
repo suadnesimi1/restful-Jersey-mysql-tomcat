@@ -33,12 +33,11 @@ public class FacultyRepo {
     public Faculty updateFaculty(Faculty faculty){
         String query ="update faculties\n" +
                 "set name =?\n" +
-                "where id = ?";
+                "where id= ?";
         try{
             ps=DbConnection.getConnection().prepareStatement(query);
             ps.setString(2,faculty.getId());
             ps.setString(1,faculty.getName());
-
             ps.executeUpdate();
 
         }catch (Exception e){

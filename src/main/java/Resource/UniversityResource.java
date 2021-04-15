@@ -3,9 +3,7 @@ package Resource;
 import Domain.University;
 import Repository.UniversityRepo;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -19,6 +17,17 @@ public class UniversityResource {
     public List<University> getUniversity() {
         return repo.getUniversity();
     }
-
+    @POST
+    @Path("/set")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public University createUni(University university){
+        return repo.createUni(university);
+    }
+    @DELETE
+    @Path("/delete")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public University deleteUni(University university){
+        return repo.deleteUni(university);
+    }
 }
 

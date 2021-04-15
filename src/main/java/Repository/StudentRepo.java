@@ -335,7 +335,7 @@ public class StudentRepo {
                 if (examGradeId!=null){
                     ExamGrade examGrade = new ExamGrade();
                     examGrade.setExamId(examGradeId);
-                    examGrade.setStudent_id(rs.getString("s.id"));
+                    examGrade.setStudentId(rs.getString("s.id"));
                     examGrade.setGrade(rs.getString("eg.grade"));
                     student.getExamGrades().add(examGrade);
                 }

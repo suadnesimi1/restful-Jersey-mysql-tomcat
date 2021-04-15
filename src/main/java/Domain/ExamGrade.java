@@ -5,12 +5,12 @@ public class ExamGrade {
     String examId;
     String grade;
 
-    public String getStudent_id() {
+    public String getStudentId() {
         return studentId;
     }
 
-    public void setStudent_id(String student_id) {
-        this.studentId=student_id;
+    public void setStudentId(String student_id) {
+        this.studentId=studentId;
     }
 
     public String getExamId() {
@@ -18,7 +18,7 @@ public class ExamGrade {
     }
 
     public void setExamId(String exam_id) {
-        this.examId=exam_id;
+        this.examId=examId;
     }
 
     public String getGrade() {

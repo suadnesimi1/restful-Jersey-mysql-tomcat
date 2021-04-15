@@ -34,7 +34,34 @@ public class UniversityRepo {
             DbConnection.closeAll(ps);
         }
         return universityList;
-
-
     }
+    public University createUni(University university){
+        String query = "insert into universities(id, name) values(?,?)";
+        try{
+            ps = DbConnection.getConnection().prepareStatement(query);
+            ps.setString(1,university.getId());
+            ps.setString(2,university.getName());
+            ps.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DbConnection.closeAll(ps);
+        }
+        return university;
+    }
+    public University deleteUni(University university){
+        String query="";
+        try{
+            ps =DbConnection.getConnection().prepareStatement(query);
+            ps.setString(1,university.getId());
+            ps.setString(2,university.getName());
+            ps.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            DbConnection.closeAll(ps);
+        }
+        return university;
+    }
+
 }

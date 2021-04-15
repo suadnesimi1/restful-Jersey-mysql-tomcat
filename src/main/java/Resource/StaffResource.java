@@ -16,7 +16,6 @@ public class StaffResource {
     public List<Staff> getStaff() {
         return repo.getStaff();
     }
-
     @GET
     @Path("/{name}")
     @Produces(MediaType.APPLICATION_JSON)
