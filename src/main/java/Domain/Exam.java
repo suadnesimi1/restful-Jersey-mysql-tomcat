@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Exam extends ExamGrade {
     private String id;
-    private String grade;
     private List<ExamGrade>examGrades=new ArrayList<>();
 
     public Exam(){
