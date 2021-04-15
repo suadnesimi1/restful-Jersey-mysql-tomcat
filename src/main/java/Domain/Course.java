@@ -12,8 +12,6 @@ public class Course {
     private List<Student> students = new ArrayList<>();
     private List<Staff> staff = new ArrayList<>();
 
-
-
     public Course() {
 
     }
@@ -40,7 +38,7 @@ public class Course {
     public void setName(String name) {
         this.name = name;
     }
-    public String getFinal_grade(){
+    public String getFinalGrade(){
         return finalGrade;
     }
     public void setFinalGrade(String finalGrade){
