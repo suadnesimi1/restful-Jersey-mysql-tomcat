@@ -17,7 +17,7 @@ public class FacultyRepo {
     public Faculty createFaculty(Faculty faculty) {
         String sql = "insert into faculties(id, name, university_id) VALUE (?,?,?)";
         try {
-            ps=DbConnection.getConnection().prepareStatement(sql);
+            ps = DbConnection.getConnection().prepareStatement(sql);
             ps.setString(1, faculty.getId());
             ps.setString(2, faculty.getName());
             ps.setString(3, faculty.getUniversityId());
@@ -30,36 +30,38 @@ public class FacultyRepo {
         }
         return faculty;
     }
-    public Faculty updateFaculty(Faculty faculty){
-        String query ="update faculties\n" +
+
+    public Faculty updateFaculty(Faculty faculty) {
+        String query = "update faculties\n" +
                 "set name =?\n" +
                 "where id= ?";
-        try{
-            ps=DbConnection.getConnection().prepareStatement(query);
-            ps.setString(2,faculty.getId());
-            ps.setString(1,faculty.getName());
+        try {
+            ps = DbConnection.getConnection().prepareStatement(query);
+            ps.setString(2, faculty.getId());
+            ps.setString(1, faculty.getName());
             ps.executeUpdate();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             DbConnection.closeAll(ps);
         }
         return faculty;
     }
-    public Faculty deleteFaculty(Faculty faculty){
+
+    public Faculty deleteFaculty(Faculty faculty) {
         String query = "delete from faculties\n" +
                 "where id = ?";
-        try{
-            ps=DbConnection.getConnection().prepareStatement(query);
-            ps.setString(1,faculty.getId());
+        try {
+            ps = DbConnection.getConnection().prepareStatement(query);
+            ps.setString(1, faculty.getId());
 
 
             ps.executeUpdate();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             DbConnection.closeAll(ps);
         }
         return faculty;
@@ -119,31 +121,32 @@ public class FacultyRepo {
         }
         return faculty;
     }
+
     /*
     get faculties,courses
      */
-    public List<Faculty>getAllFaculties(){
-        HashMap<String,Faculty>facultyHashMap = new HashMap<>();
+    public List<Faculty> getAllFaculties() {
+        HashMap<String, Faculty> facultyHashMap = new HashMap<>();
         String query = "select f.id,f.name, c.name from faculties f\n" +
                 "inner join faculty_courses fc on f.id = fc.faculty_id\n" +
                 "inner join courses c on fc.course_id = c.id";
         Connection connection = null;
-        try{
+        try {
             connection = DbConnection.getConnection();
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 String facultyId = rs.getString("f.id");
                 Faculty faculty = facultyHashMap.get(facultyId);
-                if (faculty == null){
+                if (faculty == null) {
                     faculty = new Faculty();
                     faculty.setId(facultyId);
                     faculty.setName(rs.getString("f.name"));
                     faculty.setCourses(new ArrayList<>());
-                    facultyHashMap.put(facultyId,faculty);
+                    facultyHashMap.put(facultyId, faculty);
                 }
                 String courseId = rs.getString("c.id");
-                if (courseId!=null){
+                if (courseId != null) {
                     Course course = new Course();
                     course.setId(courseId);
                     course.setName(rs.getString("c.name"));
@@ -152,12 +155,12 @@ public class FacultyRepo {
                 }
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 rs.close();
-        }catch (SQLException throwables){
+            } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
             DbConnection.closeAll(ps);
@@ -165,8 +168,4 @@ public class FacultyRepo {
         }
         return new ArrayList<>(facultyHashMap.values());
     }
-
-
-
-
 }

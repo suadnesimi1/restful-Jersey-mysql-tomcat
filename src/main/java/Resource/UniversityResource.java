@@ -17,17 +17,5 @@ public class UniversityResource {
     public List<University> getUniversity() {
         return repo.getUniversity();
     }
-    @POST
-    @Path("/set")
-    @Consumes({MediaType.APPLICATION_JSON})
-    public University createUni(University university){
-        return repo.createUni(university);
-    }
-    @DELETE
-    @Path("/delete")
-    @Consumes({MediaType.APPLICATION_JSON})
-    public University deleteUni(University university){
-        return repo.deleteUni(university);
-    }
 }
 

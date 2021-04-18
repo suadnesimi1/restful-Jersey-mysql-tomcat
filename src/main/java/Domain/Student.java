@@ -12,6 +12,7 @@ public class Student {
     private List<Course> courses = new ArrayList<>();
     private List<Exam> exams = new ArrayList<>();
     private List<ExamGrade>examGrades=new ArrayList<>();
+    private List<FinalGrade>finalGrades=new ArrayList<>();
 
 
     public Student(){
@@ -66,6 +67,13 @@ public class Student {
     }
     public List<ExamGrade> getExamGrades() {
         return examGrades;
+    }
+
+    public void setFinalGrades(List<FinalGrade>finalGrades){
+        this.finalGrades=finalGrades;
+    }
+    public List<FinalGrade>getFinalGrades(){
+        return finalGrades;
     }
 
 

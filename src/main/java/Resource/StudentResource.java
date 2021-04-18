@@ -75,4 +75,10 @@ public class StudentResource {
     public List<Student>getStudentsExam(){
         return repo.getStudentExam();
     }
+    @GET
+    @Path("getAll")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public List<Student>getAll(){
+        return repo.getAll();
+    }
 }

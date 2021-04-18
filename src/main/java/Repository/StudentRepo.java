@@ -1,10 +1,7 @@
 package Repository;
 
 import Connection.DbConnection;
-import Domain.Course;
-import Domain.Exam;
-import Domain.ExamGrade;
-import Domain.Student;
+import Domain.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -356,4 +353,41 @@ public class StudentRepo {
         }
 
     }
+    public List<Student>getAll(){
+        HashMap<String,Student>studentHashMap = new HashMap<>();
+        String query="select fc.faculty_id as Faculty,s.name as Students,c.name as Courses,fg.grade as Grade from students s\n" +
+                "inner join final_grade fg on s.id = fg.student_id\n" +
+                "inner join courses c on fg.course_id = c.id\n" +
+                "inner join faculty_courses fc on c.id = fc.course_id";
+        Connection connection = null;
+        try{
+            ps = DbConnection.getConnection().prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                String studentName = rs.getString("Students");
+                Student student = studentHashMap.get(studentName);
+                if (student == null){
+                    student = new Student();
+                    student.setCourses(new ArrayList<>());
+//                    student.getFinalGrades(new ArrayList<>());
+                    studentHashMap.put(studentName,student);
+                }
+                String courseName = rs.getString("Courses");
+                if (courseName !=null){
+                    Course course = new Course();
+                    student.getCourses().add(course);
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+           try {
+               rs.close();
+           }catch (SQLException throwables){
+               throwables.printStackTrace();
+           }
+           DbConnection.closeAll(ps);
+        }
+        return new ArrayList<>(studentHashMap.values());
+        }
 }
